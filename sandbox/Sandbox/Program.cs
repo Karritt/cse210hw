@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("fName? ");
+        Console.Write("Grade Percentage? ");
         string fName = Console.ReadLine();
         Console.Write("lName? ");
         string lName = Console.ReadLine();
