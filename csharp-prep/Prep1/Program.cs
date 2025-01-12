@@ -4,6 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Prep1 World!");
+        // Copy/Pasted from Sandbox
+        Console.Write("Grade Percentage? ");
+        string fName = Console.ReadLine();
+        Console.Write("lName? ");
+        string lName = Console.ReadLine();
+        Console.Write($"Your name is {lName}, {fName} {lName}");
     }
 }
