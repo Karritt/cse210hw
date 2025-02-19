@@ -4,6 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Learning04 World!");
+        MathAssignment mathAssignment = new MathAssignment("John", "Algebra", "Chapter 3", "1-10");
+        WritingAssignment writingAssignment = new WritingAssignment("Jane", "Narrative", "My Summer Vacation");
+
+        Console.WriteLine(mathAssignment.GetSummary());
+        Console.WriteLine(mathAssignment.GetHomeworkList());
+        Console.WriteLine(writingAssignment.GetSummary());
+        Console.WriteLine(writingAssignment.GetWritingInformation());
     }
 }
