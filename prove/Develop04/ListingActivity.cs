@@ -15,19 +15,20 @@ public class ListingActivity : Activity
     public void Start()
     {
         DisplayIntroAndSetDuration();
-        int timeLeft = GetDuration();
         Console.WriteLine("Get ready...");
         new Spinner(3);
+        Console.Clear();
         Console.WriteLine(getRandomPrompt());
-        while (timeLeft > 0)
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = DateTime.Now;
+        TimeSpan timeTaken = endTime - startTime;
+        while (GetDuration() - timeTaken.Seconds > 0)
         {
-            DateTime startTime = DateTime.Now;
-            Console.Write($"{timeLeft}> ");
+            Console.Write($"{GetDuration() - timeTaken.Seconds}> ");
             string response = Console.ReadLine();
-            _responses.Add(response);
-            DateTime endTime = DateTime.Now;
-            TimeSpan timeTaken = endTime - startTime;
-            timeLeft -= timeTaken.Seconds;
+            addResponse(response);
+            endTime = DateTime.Now;
+            timeTaken = endTime - startTime;
         }
         Console.WriteLine($"You listed {_responses.Count} items.");
         DisplayOutro();
@@ -45,5 +46,21 @@ public class ListingActivity : Activity
         _usedPrompts.Add(chosenPrompt);
         _prompts.Remove(chosenPrompt);
         return chosenPrompt;
+    }
+    private void addResponse(string response)
+    {
+        if (response == "" || response == " " || response == null)
+        {
+            Console.WriteLine("Please enter a valid response.");
+        } 
+        else if (_responses.Contains(response.ToLower()))
+        {
+            Console.WriteLine("You have already entered that response. Please enter a different one.");
+        } 
+        else
+        {
+            _responses.Add(response.ToLower());
+        }
+        
     }
 }
