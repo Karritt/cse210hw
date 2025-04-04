@@ -22,7 +22,7 @@ public class Contact
         _notes = "";
     }
 
-    public string GetInfo ()
+    public string GetInfo()
     {
         return $"{_name} - {_email} - {_phoneNumber} - {_address} - {_notes}";
     }

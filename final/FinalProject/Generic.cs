@@ -2,10 +2,10 @@ using System.Collections.Specialized;
 
 public class Generic : Event
 {
-    public Generic (string title, DateTime startTime, TimeSpan duration, string description) : base(title, startTime, duration, description)
-    {}
-    public Generic (string title, DateTime startTime, TimeSpan duration) : base(title, startTime, duration)
-    {}
+    public Generic(string title, DateTime startTime, TimeSpan duration, string description) : base(title, startTime, duration, description)
+    { }
+    public Generic(string title, DateTime startTime, TimeSpan duration) : base(title, startTime, duration)
+    { }
     public override string CancelEvent()
     {
         SetStartTime(DateTime.MinValue);

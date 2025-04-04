@@ -35,7 +35,7 @@ class Program
                 else if (parts[0] == "appointment")
                 {
                     List<Contact> eventContacts = new List<Contact>();
-                    string[] contactNames = parts[6].Trim('[',']').Split(',');
+                    string[] contactNames = parts[6].Trim('[', ']').Split(',');
                     foreach (string contactName in contactNames)
                     {
                         Contact contact = contacts.Find(c => c.GetName() == contactName.Trim());
@@ -84,7 +84,7 @@ class Program
                 contacts.Add(newContact);
             }
             else if (choice == "2")
-           {
+            {
                 Console.WriteLine("Viewing contacts...");
                 foreach (Contact contact in contacts)
                 {
@@ -92,9 +92,9 @@ class Program
                 }
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
-           }
+            }
             else if (choice == "3")
-           {
+            {
                 Console.WriteLine("Deleting a contact...");
                 Console.Write("Enter the name of the contact to delete: ");
                 string nameToDelete = Console.ReadLine();
@@ -118,7 +118,7 @@ class Program
                 }
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
-           }
+            }
             else if (choice == "4")
             {
                 Console.WriteLine("Creating a new event...");

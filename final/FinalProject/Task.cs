@@ -4,10 +4,10 @@ public class Task : Event
 {
     private Boolean _completed = false;
     public Task(string Title, DateTime DeadLine, string Notes) : base(Title, DeadLine, new TimeSpan(0, 0, 0), Notes)
-    {}
+    { }
     public Task(string Title, DateTime DeadLine) : base(Title, DeadLine, new TimeSpan(0, 0, 0))
-    {}
-    public Task (string Title, DateTime DeadLine, string Notes, Boolean Completed) : base(Title, DeadLine, new TimeSpan(0, 0, 0), Notes)
+    { }
+    public Task(string Title, DateTime DeadLine, string Notes, Boolean Completed) : base(Title, DeadLine, new TimeSpan(0, 0, 0), Notes)
     {
         _completed = Completed;
     }
