@@ -1,5 +1,5 @@
 
-public class Event
+public abstract class Event
 {
     private string _title;
     private string _notes;
@@ -26,23 +26,43 @@ public class Event
     {
         _reminder = _startDate - Reminder;
     }
-
-    public string GetInfo()
+    public void DeleteReminder()
     {
-        return $"{_title} - {_startDate} to {_endDate}. {_notes}";
+        _reminder = default;
     }
+
+    public abstract string GetInfo();
     public string GetTitle()
     {
         return _title;
     }
-
-    //this function may be polymorpic
-    public string CancelEvent()
+    public string GetNotes()
     {
-        _startDate = DateTime.MinValue;
-        _endDate = DateTime.MinValue;
-        _notes = "";
-        return $"{_title} has been cancelled.";
+        return _notes;
     }
-
+    public string GetStartTimeAsString()
+    {
+        return _startDate.ToString("MM/dd/yyyy HH:mm:ss");
+    }
+    public string GetDurationAsString()
+    {
+        TimeSpan duration = _endDate - _startDate;
+        return $"{duration.TotalHours}hr, {duration.Minutes}min";
+    }
+    public string GetDurationAsSerializedString()
+    {
+        TimeSpan duration = _endDate - _startDate;
+        return $"{duration.TotalHours}:{duration.Minutes}";
+    }
+    public void SetStartTime(DateTime StartTime)
+    {
+        _startDate = StartTime;
+    }
+    public void SetDuration(TimeSpan Duration)
+    {
+        _endDate = _startDate.Add(Duration);
+    }
+    //this function may be polymorpic
+    public abstract string CancelEvent();
+    public abstract string Serialize();
 }

@@ -17,12 +17,21 @@ public class Appointment : Event
         SetReminder(new TimeSpan(0, 30, 0));
     }
 
-
-
-    //polymorphic function to get the info of the appointment, but also need to include the contacts and location.
-    public new string GetInfo()
+    //polymorphic function to cancel the event, but also need to remind the user to cancel their appointment with their contacts.
+    public override string CancelEvent()
     {
-        string outString = $"{base.GetInfo()} \nLocation: {_location} \nContacts: ";
+        string output = $"Don't forget to cancel your appointment at {_location} with the following contacts: \n";
+        _contacts.ForEach(contact => output += contact.GetInfo() + "\n");
+        _contacts.Clear();
+        _location = "";
+        SetStartTime(DateTime.MinValue);
+        DeleteReminder();
+        output += $"{GetTitle()} has been canceled.";
+        return output;
+    }
+    public override string GetInfo()
+    {
+        string outString = $"{GetTitle()} - {GetStartTimeAsString()} - {GetDurationAsString()} - {GetNotes()} \nLocation: {_location} \nContacts: ";
         if (_contacts.Count == 0)
         {
             outString += "No contacts.";
@@ -33,15 +42,8 @@ public class Appointment : Event
         }
         return outString;
     }
-
-    //polymorphic function to cancel the event, but also need to remind the user to cancel their appointment with their contacts.
-    public string CancelEvent()
+    public override string Serialize()
     {
-        string output = $"Don't forget to cancel your appointment at {_location} with the following contacts: \n";
-        _contacts.ForEach(contact => output += contact.GetInfo() + "\n");
-        _contacts.Clear();
-        _location = "";
-        output += base.CancelEvent(); //still calls the base cancelEvent function to clear the start and end date and notes.
-        return output;
+        return $"appointment::{GetTitle()}::{GetStartTimeAsString()}::{GetDurationAsSerializedString()}::{GetNotes()}::{_location}::{string.Join(",", _contacts.Select(c => c.GetName()))}";
     }
 }

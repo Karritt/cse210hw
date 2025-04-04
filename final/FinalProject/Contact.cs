@@ -30,4 +30,8 @@ public class Contact
     {
         return _name;
     }
+    public string Serialize()
+    {
+        return $"contact::{_name}::{_email}::{_phoneNumber}::{_address}::{_notes}";
+    }
 }
